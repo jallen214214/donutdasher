@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Flag Dash | Donut Dasher</title>
+<meta name="description" content="Flag Dash: a quick flag football game. Dodge defenders, keep your flags, grab donuts and run it in for a touchdown. Free to play with no sign-up.">
+<meta name="theme-color" content="#FF4F8B">
+<link rel="canonical" href="https://donutdasher.com/flag-dash">
+<meta property="og:url" content="https://donutdasher.com/flag-dash">
+<meta property="og:title" content="Flag Dash | Donut Dasher">
+<meta property="og:description" content="Flag Dash: a quick flag football game. Dodge defenders, keep your flags, grab donuts and run it in for a touchdown. Free to play with no sign-up.">
+<meta property="og:type" content="website">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Barlow:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/css/site.css?v=1794884065">
+</head>
+<body class="page-dash">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="/"><svg class="brand__logo" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g stroke="#2B1B3D" stroke-width="4" stroke-linecap="round"><path d="M3 24h12M1 33h11M4 42h10"/></g><path fill="#E9A05A" fill-rule="evenodd" d="M38 8a24 24 0 1 1 0 48a24 24 0 1 1 0-48zm0 16a8 8 0 1 0 0 16a8 8 0 1 0 0-16z"/><path fill="#FF4F8B" fill-rule="evenodd" d="M38 12c6 0 9 2 12 5s5 6 5 10c1 5-1 8-2 11c-2 4-5 7-9 8c-4 2-8 1-11 1c-4-1-7-3-10-6s-3-7-3-11c0-5 2-9 6-13c3-3 8-5 12-5zm0 12a8 8 0 1 0 0 16a8 8 0 1 0 0-16z"/><g stroke-width="3" stroke-linecap="round"><path stroke="#FFC629" d="M30 17l4-2"/><path stroke="#3DD6C6" d="M47 19l3 3"/><path stroke="#FFFFFF" d="M51 33l0 4"/><path stroke="#7C5CFF" d="M27 33l-1 4"/><path stroke="#FFC629" d="M44 46l4-1"/><path stroke="#3DD6C6" d="M30 44l3 2"/></g></svg><span class="brand__name">Donut <span>Dasher</span></span></a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/#games">Games</a>
+      <a href="/privacy">Privacy</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+
+<section class="dash-section">
+  <div class="wrap dash">
+
+    <div class="dash__play">
+      <div class="dash__titlebar">
+        <h1 class="dash__h1">Flag Dash</h1>
+        <a class="dash__jump" href="#leaderboard">Leaderboard</a>
+      </div>
+      <div class="dash__stage">
+        <canvas id="dash-canvas" class="dash__canvas"
+                data-board=""
+                data-api="/api/flag-dash.php"
+                data-endzone="DONUT DASH"
+                width="360" height="560" role="img"
+                aria-label="Flag Dash game: a football field where you run toward the end zone while defenders try to pull your flags"></canvas>
+        <div class="dash__overlay" id="dash-overlay">
+          <p class="dash__title" id="dash-title">Flag Dash</p>
+          <p class="dash__text" id="dash-text">You have 3 flags. Don’t let the defenders pull them all!</p>
+          <button class="btn btn--primary dash__button" id="dash-play" type="button">Play</button>
+          <p class="dash__hint">or press the space bar</p>
+        </div>
+      </div>
+      <div class="dash__controls">
+        <button class="dash__spin" id="dash-spin" type="button" disabled>Spin move</button>
+        <button class="dash__sound" id="dash-sound" type="button" aria-pressed="true">Sound on</button>
+      </div>
+    </div>
+
+    <div class="dash__info">
+      <div class="dash__how">
+        <h2 class="dash__heading">How to play</h2>
+        <ul class="dash__list">
+          <li><strong>Steer</strong> Drag your finger on the field, move your mouse, or use the arrow keys.</li>
+          <li><strong>Spin move</strong> Tap Spin, double-tap the field, or press the space bar. Nobody can pull your flags mid-spin.</li>
+          <li><strong>Score</strong> Touchdown = 7 points. Donuts = 1 bonus point. Close calls build combos and XP.</li>
+          <li><strong>Flags</strong> You have 3. Lose them all and the game is over.</li>
+        </ul>
+      </div>
+
+      <div class="dash__board" id="leaderboard">
+        <p class="dash__board-eyebrow">Monthly leaderboard</p>
+        <p class="dash__board-sub">The leaderboard is opening soon. Your best score is still saved on this device, so keep practicing!</p>
+      </div>
+
+      <div class="dash__player-card">
+        <h2 class="dash__heading">Your player</h2>
+        <div class="dash__player" id="dash-player"></div>
+      </div>
+
+      <div class="dash__locker">
+        <h2 class="dash__heading">Locker room</h2>
+        <p class="dash__sub">Collect donuts in any game to unlock new looks. Tap one to wear it.</p>
+        <div id="dash-locker"></div>
+      </div>
+
+      <div class="dash__badges">
+        <h2 class="dash__heading">Your badges <span class="dash__badge-count" id="dash-badge-count"></span></h2>
+        <p class="dash__sub">Earn badges as you play. They’re saved on this device.</p>
+        <ul class="dash__badge-list" id="dash-badges"></ul>
+      </div>
+
+      <div class="dash__guide">
+        <h2 class="dash__heading">On the field</h2>
+        <div class="dash__guide-cols">
+          <div>
+            <h3 class="dash__guide-title">Power-ups</h3>
+            <ul class="dash__guide-list">
+              <li><span class="dash__chip dash__chip--power">&#9889;</span><span><strong>Turbo</strong> Steer super fast for 5 seconds.</span></li>
+              <li><span class="dash__chip dash__chip--power">&#129522;</span><span><strong>Donut magnet</strong> Pulls nearby donuts to you.</span></li>
+              <li><span class="dash__chip dash__chip--power">&#128681;</span><span><strong>Extra flag</strong> Get a lost flag back.</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="dash__guide-title">Defenders</h3>
+            <ul class="dash__guide-list">
+              <li><span class="dash__chip dash__chip--chaser"></span><span><strong>Chaser</strong> Follows you across the field.</span></li>
+              <li><span class="dash__chip dash__chip--zig"></span><span><strong>Zig-zagger</strong> Weaves side to side.</span></li>
+              <li><span class="dash__chip dash__chip--blitz"></span><span><strong>Blitzer</strong> Charges straight at you (drive 2+).</span></li>
+              <li><span class="dash__chip dash__chip--wall"></span><span><strong>The wall</strong> A line across the field. Find the gap! (drive 4+)</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash__more">
+        <p>Want a different kind of dash?</p>
+        <a class="btn btn--ghost" href="/perihelion/">Play Perihelion</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script src="/js/flag-dash.v1.js" defer></script>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <p class="site-footer__promise"><strong>Donut Dasher</strong> Free, quick games for kids. No sign-up needed.</p>
+    <p class="site-footer__links"><a href="/">Games</a><a href="/privacy">Privacy</a><span>&copy; 2026 Donut Dasher</span></p>
+  </div>
+</footer>
+</body>
+</html>
